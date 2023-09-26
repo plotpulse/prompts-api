@@ -1,6 +1,8 @@
 import cookieParser from 'cookie-parser';
 import * as logger from 'morgan'
-import express, { Request, Response, NextFunction } from 'express';
+import express from 'express';
+
+const { Request, Response, NextFunction } = express
 
 
 const  createError = require('http-errors');
@@ -23,7 +25,9 @@ app.use(cookieParser())
 
 // routers
 
-
+app.use('/',  function(req, res, next) {
+  res.send('hello world');
+});
 
 
 // catch 404 and forward to error handler

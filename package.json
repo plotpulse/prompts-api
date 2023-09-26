@@ -8,6 +8,16 @@
     "build": "tsc",
     "dev": "nodemon"
   },
+  "nodemonConfig": {
+    "watch": [
+      "src"
+    ],
+    "ext": "ts, html",
+    "ignore": [
+      "src/public"
+    ],
+    "exec": "./node_modules/.bin/ts-node --files -r tsconfig-paths/register ./src/server.tsx"
+  },
   "keywords": [],
   "author": "",
   "license": "ISC",
@@ -22,6 +32,12 @@
   },
   "devDependencies": {
     "@types/node": "^20.7.0",
-    "nodemon": "^3.0.1"
+    "and": "^0.0.3",
+    "nodemon": "^3.0.1",
+    "ts-node": "^10.9.1",
+    "tsconfig-paths": "^4.2.0"
+  },
+  "_moduleAliases": {
+    "@src": "dist"
   }
 }
