@@ -29,6 +29,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const cookie_parser_1 = __importDefault(require("cookie-parser"));
 const logger = __importStar(require("morgan"));
 const express_1 = __importDefault(require("express"));
+const { Request, Response, NextFunction } = express_1.default;
 const createError = require('http-errors');
 /////////////
 const app = (0, express_1.default)();
