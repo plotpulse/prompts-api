@@ -14,6 +14,10 @@ exports.AppDataSource = new typeorm_1.DataSource({
     username: User,
     password: Password,
     database: "plotpulse",
+    options: {
+        encrypt: true,
+        trustServerCertificate: false,
+    },
     synchronize: true,
     logging: false,
     entities: ["src/entity/**/*.ts"],
