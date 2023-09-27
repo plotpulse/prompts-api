@@ -1,9 +1,12 @@
 import cookieParser from "cookie-parser";
 import logger from "morgan";
 import express from "express";
+import dotenv from "dotenv";
+dotenv.config();
 
 const { Request, Response, NextFunction } = express;
 const createError = require("http-errors");
+const cors = require("cors");
 
 /////////////
 
@@ -13,7 +16,7 @@ const app = express();
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-
+app.use(cors());
 app.use(logger("dev"));
 app.use(cookieParser());
 
