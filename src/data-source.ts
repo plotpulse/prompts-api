@@ -1,19 +1,32 @@
 import { DataSource } from "typeorm";
 import EnvVars from "./constants/EnvVars";
 
-const { Host, Port, User, Password } = EnvVars.DbInfo;
+const { DbUrl } = EnvVars
+
+// const { Host, Port, User, Password } = EnvVars.DbInfo;
+
+// export const AppDataSource = new DataSource({
+//   type: "mssql",
+//   host: Host,
+//   port: Number(Port),
+//   username: User,
+//   password: Password,
+//   database: "plotpulse",
+//   options: {
+//     encrypt: true, 
+//     trustServerCertificate: false, 
+//   },
+//   synchronize: true,
+//   logging: false,
+//   entities: ["src/entity/**/*.ts"],
+//   migrations: ["src/migration/**/*.ts"],
+//   subscribers: ["src/subscriber/**/*.ts"],
+// });
+
 
 export const AppDataSource = new DataSource({
-  type: "mssql",
-  host: Host,
-  port: Number(Port),
-  username: User,
-  password: Password,
-  database: "plotpulse",
-  options: {
-    encrypt: true, 
-    trustServerCertificate: false, 
-  },
+  type: "postgres",
+  url: DbUrl,
   synchronize: true,
   logging: false,
   entities: ["src/entity/**/*.ts"],
