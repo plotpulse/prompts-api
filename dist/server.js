@@ -4,19 +4,20 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const cookie_parser_1 = __importDefault(require("cookie-parser"));
+const morgan_1 = __importDefault(require("morgan"));
 const express_1 = __importDefault(require("express"));
 const { Request, Response, NextFunction } = express_1.default;
-const createError = require('http-errors');
+const createError = require("http-errors");
 /////////////
 const app = (0, express_1.default)();
 /////////////////
 app.use(express_1.default.json());
 app.use(express_1.default.urlencoded({ extended: true }));
-// app.use(logger('dev'))
+app.use((0, morgan_1.default)("dev"));
 app.use((0, cookie_parser_1.default)());
 // routers
-app.use('/', function (req, res, next) {
-    res.send('hello world');
+app.use("/", function (req, res, next) {
+    res.send("hello world");
 });
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
@@ -24,12 +25,10 @@ app.use(function (req, res, next) {
 });
 // error handler
 app.use(function (err, req, res, next) {
-    // set locals, only providing error in development
     res.locals.message = err.message;
-    res.locals.error = req.app.get('env') === 'development' ? err : {};
-    // render the error page
+    res.locals.error = req.app.get("env") === "development" ? err : {};
     res.status(err.status || 500);
-    res.render('error');
+    res.render("error");
 });
 exports.default = app;
 //# sourceMappingURL=server.js.map

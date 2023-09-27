@@ -1,5 +1,5 @@
 import cookieParser from "cookie-parser";
-import * as logger from "morgan";
+import logger from "morgan";
 import express from "express";
 
 const { Request, Response, NextFunction } = express;
@@ -14,7 +14,7 @@ const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-// app.use(logger('dev'))
+app.use(logger("dev"));
 app.use(cookieParser());
 
 // routers
