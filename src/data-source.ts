@@ -6,7 +6,7 @@ const { Host, Port, User, Password } = EnvVars.DbInfo;
 export const AppDataSource = new DataSource({
   type: "mssql",
   host: Host,
-  port: Port,
+  port: Number(Port),
   username: User,
   password: Password,
   database: "plotpulse",
