@@ -1,1 +1,6 @@
 node_modules
+
+development.env
+.env
+production.env
+test.env
