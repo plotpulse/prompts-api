@@ -19,10 +19,10 @@ app.use(cors());
 app.use((0, morgan_1.default)("dev"));
 app.use((0, cookie_parser_1.default)());
 // routers
+app.use("/prompts", promptsRouter);
 app.use('/', (req, res, next) => {
     res.send("hello world");
 });
-app.use("/prompts", promptsRouter);
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
     next(createError(404));

@@ -19,11 +19,12 @@ app.use(logger("dev"));
 app.use(cookieParser());
 
 // routers
+app.use("/prompts", promptsRouter);
+
 app.use('/', (req, res,next) => {
   res.send("hello world")
 })
 
-app.use("/prompts", promptsRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
