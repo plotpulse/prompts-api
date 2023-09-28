@@ -12,7 +12,6 @@ const cors = require("cors");
 const promptsRouter = require("./routes/promptsRouter.js");
 /////////////
 const app = (0, express_1.default)();
-app.set("view engine", "ejs");
 /////////////////
 app.use(express_1.default.json());
 app.use(express_1.default.urlencoded({ extended: true }));
@@ -20,6 +19,9 @@ app.use(cors());
 app.use((0, morgan_1.default)("dev"));
 app.use((0, cookie_parser_1.default)());
 // routers
+app.use('/', (req, res, next) => {
+    res.send("hello world");
+});
 app.use("/prompts", promptsRouter);
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
@@ -29,8 +31,7 @@ app.use(function (req, res, next) {
 app.use(function (err, req, res, next) {
     res.locals.message = err.message;
     res.locals.error = req.app.get("env") === "development" ? err : {};
-    res.status(err.status || 500);
-    res.render("error");
+    res.status(err.status || 500).json({ error: err.message });
 });
 exports.default = app;
 //# sourceMappingURL=server.js.map
