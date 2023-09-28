@@ -9,6 +9,7 @@ const promptsRouter = require("./routes/promptsRouter.js");
 
 /////////////
 const app = express();
+app.set("view engine", "ejs");
 
 /////////////////
 

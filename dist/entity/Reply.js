@@ -30,5 +30,4 @@ __decorate([
 exports.Reply = Reply = __decorate([
     (0, typeorm_1.Entity)()
 ], Reply);
-// adding a comment
 //# sourceMappingURL=Reply.js.map
