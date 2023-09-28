@@ -1,4 +1,4 @@
-const { Prompt } = require("../models");
+const { Prompt } = require("../entities");
 
 async function create(req, res, next) {
   try {
