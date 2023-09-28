@@ -8,6 +8,7 @@ export interface IReply {
 
 }
 
+@Entity()
 export class Reply implements IReply {
 
     @PrimaryGeneratedColumn()

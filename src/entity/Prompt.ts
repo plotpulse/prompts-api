@@ -9,6 +9,7 @@ export interface IPrompt {
 
 }
 
+@Entity()
 export class Prompt implements IPrompt {
 
     @PrimaryGeneratedColumn()
