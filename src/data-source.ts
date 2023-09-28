@@ -8,9 +8,9 @@ const AppDataSource = new DataSource({
   url: DbUrl,
   synchronize: true,
   logging: false,
-  entities: ["src/entity/**/*.ts"],
-  migrations: ["src/migration/**/*.ts"],
-  subscribers: ["src/subscriber/**/*.ts"],
+  entities: ["dist/entity/**/*.js"],
+  migrations: ["dist/migration/**/*.js"],
+  subscribers: ["dist/subscriber/**/*.js"],
 });
 
 export default AppDataSource;

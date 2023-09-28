@@ -15,6 +15,19 @@ server_1.default.listen(EnvVars_1.default.Port, () => jet_logger_1.default.info(
 data_source_1.default.initialize()
     .then(() => {
     console.log("Data Source has been initialized!");
+    // const promptRepository = AppDataSource.getRepository(Prompt)
+    // const prompt = new Prompt()
+    // prompt.content = "A warlock, a rouge, an artificer all walk into a bar..."
+    // async function savePrompt(){
+    //     await promptRepository.save(prompt)
+    //     console.log("Saved")
+    // }
+    // async function allPrompts(){
+    //     const result = await promptRepository.find()
+    //     console.log(result)
+    // }
+    // savePrompt()
+    // allPrompts()
 })
     .catch((err) => {
     console.error("Error during Data Source initialization", err);
