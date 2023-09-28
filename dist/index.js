@@ -8,11 +8,11 @@ const jet_logger_1 = __importDefault(require("jet-logger"));
 const EnvVars_1 = __importDefault(require("./constants/EnvVars"));
 const server_1 = __importDefault(require("./server"));
 require("reflect-metadata");
-const data_source_1 = require("./data-source");
+const data_source_1 = __importDefault(require("./data-source"));
 // **** Run **** //
 const SERVER_START_MSG = "Express server started on port: " + EnvVars_1.default.Port.toString();
 server_1.default.listen(EnvVars_1.default.Port, () => jet_logger_1.default.info(SERVER_START_MSG));
-data_source_1.AppDataSource.initialize()
+data_source_1.default.initialize()
     .then(() => {
     console.log("Data Source has been initialized!");
 })

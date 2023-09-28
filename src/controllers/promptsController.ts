@@ -1,4 +1,4 @@
-import { AppDataSource } from "../data-source";
+import AppDataSource from "../data-source";
 import { Prompt, Reply } from "../entity";
 
 const promptRepository = AppDataSource.getRepository(Prompt);
