@@ -1,4 +1,4 @@
-import { Entity, PrimaryGeneratedColumn, Column, ManyToOne } from "typeorm";
+import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, Relation } from "typeorm";
 
 import { Prompt } from "./Prompt";
 
@@ -18,6 +18,6 @@ export class Reply implements IReply {
     response: string
 
     @ManyToOne(() => Prompt, (prompt) => prompt.replies)
-    prompt: Prompt;
+    prompt: Relation<Prompt>;
 
 }

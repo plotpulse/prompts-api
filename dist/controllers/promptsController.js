@@ -1,10 +1,13 @@
 "use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.index = exports.create = void 0;
-const data_source_1 = require("../data-source");
+const data_source_1 = __importDefault(require("../data-source"));
 const entity_1 = require("../entity");
-const promptRepository = data_source_1.AppDataSource.getRepository(entity_1.Prompt);
-const replyRepository = data_source_1.AppDataSource.getRepository(entity_1.Reply);
+const promptRepository = data_source_1.default.getRepository(entity_1.Prompt);
+const replyRepository = data_source_1.default.getRepository(entity_1.Reply);
 async function create(req, res, next) {
     try {
         const promptData = req.body;
