@@ -4,23 +4,23 @@ import express from "express";
 
 const { Request, Response, NextFunction } = express;
 const createError = require("http-errors");
+const cors = require("cors");
+const promptsRouter = require("./routes/promptsRouter.js");
 
 /////////////
-
 const app = express();
+app.set("view engine", "ejs");
 
 /////////////////
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-
+app.use(cors());
 app.use(logger("dev"));
 app.use(cookieParser());
 
 // routers
-app.use("/", function (req, res, next) {
-  res.send("hello world");
-});
+app.use("/prompts", promptsRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
