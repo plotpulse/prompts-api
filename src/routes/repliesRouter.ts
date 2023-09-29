@@ -7,10 +7,10 @@ router.get("/", repliesController.index);
 // CREATE
 router.post("/", repliesController.create);
 // SHOW/DETAILS
-router.get("/:id", repliesController.getOne);
+router.get("/:replyId", repliesController.getOne);
 // UPDATE ONE
-router.put("/:id", repliesController.update);
+router.put("/:replyId", repliesController.update);
 // DELETE
-router.delete("/:id", repliesController.delete);
+router.delete("/:replyId", repliesController.delete);
 
 export default router;

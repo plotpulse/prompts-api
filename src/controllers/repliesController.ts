@@ -8,8 +8,9 @@ async function create(req, res, next) {
   try {
     const promptId = req.params.id;
     const prompt = await promptRepository.findOneOrFail(promptId);
+    const replyData = req.body;
     const newReply = replyRepository.create({
-      ...req.body,
+      ...replyData,
       prompt: prompt,
     });
     await replyRepository.save(newReply);
@@ -30,7 +31,7 @@ async function index(req, res, next) {
 
 async function details(req, res, next) {
   try {
-    const { id } = req.params;
+    const { id } = req.params.replyId;
     const reply = await replyRepository.findOneOrFail({
       where: {
         id: id,
@@ -45,8 +46,7 @@ async function details(req, res, next) {
 
 async function update(req, res, next) {
   try {
-    const id = req.params.id;
-    console.log(id);
+    const id = req.params.promptId;
     const updatedReply = req.body;
     await replyRepository.update(id, updatedReply);
     res.status(200).json({ message: "Successfully updated" });
@@ -57,7 +57,7 @@ async function update(req, res, next) {
 
 async function destroy(req, res, next) {
   try {
-    const result = await replyRepository.delete(req.params.id);
+    const result = await replyRepository.delete(req.params.promptId);
     if (result.affected > 0) {
       res.status(200).json({ message: "Successfully deleted" });
     } else {
