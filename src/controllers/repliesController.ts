@@ -1,13 +1,17 @@
 import AppDataSource from "../data-source";
-import { Reply } from "../entity";
+import { Reply, Prompt } from "../entity";
 
 const replyRepository = AppDataSource.getRepository(Reply);
+const promptRepository = AppDataSource.getRepository(Prompt);
 
 async function create(req, res, next) {
   try {
-    const replyData = req.body;
-    const newReply = replyRepository.create(replyData);
-    console.log("hitting before await");
+    const promptId = req.params.id;
+    const prompt = await promptRepository.findOneOrFail(promptId);
+    const newReply = replyRepository.create({
+      ...req.body,
+      prompt: prompt,
+    });
     await replyRepository.save(newReply);
     res.status(201).json(newReply);
   } catch (err) {

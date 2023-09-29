@@ -22,7 +22,7 @@ export class Prompt implements IPrompt {
   content: string;
 
   @OneToMany(() => Reply, (reply) => reply.prompt, {
-    cascade: ["remove"],
+    cascade: true,
   })
   replies: Relation<Reply[]>;
 }

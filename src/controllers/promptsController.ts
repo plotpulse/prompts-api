@@ -30,6 +30,7 @@ async function details(req, res, next) {
       where: {
         id: id,
       },
+      relations: ["replies"],
     });
     res.status(200).json(prompt);
     console.log(prompt);
