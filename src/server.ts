@@ -21,10 +21,9 @@ app.use(cookieParser());
 // routers
 app.use("/prompts", promptsRouter);
 
-
-
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
+  console.log("hitting extra error");
   next(createError(404));
 });
 
@@ -32,7 +31,7 @@ app.use(function (req, res, next) {
 app.use(function (err, req, res, next) {
   res.locals.message = err.message;
   res.locals.error = req.app.get("env") === "development" ? err : {};
-  res.status(err.status || 500).json({ error: err.message })
+  res.status(err.status || 500).json({ error: err.message });
 });
 
 export default app;
