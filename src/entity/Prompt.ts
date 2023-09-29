@@ -1,4 +1,4 @@
-import { Entity, PrimaryGeneratedColumn, Column, OneToMany } from "typeorm";
+import { Entity, PrimaryGeneratedColumn, Column, OneToMany, Relation } from "typeorm";
 
 import { Reply } from "./Reply";
 
@@ -16,5 +16,5 @@ export class Prompt implements IPrompt {
   content: string;
 
   @OneToMany(() => Reply, (reply) => reply.prompt)
-  replies: Reply[];
+  replies: Relation<Reply[]>;
 }

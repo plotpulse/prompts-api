@@ -1,4 +1,4 @@
-import { AppDataSource } from "../data-source";
+import AppDataSource from "../data-source";
 import { Prompt, Reply } from "../entity";
 
 const promptRepository = AppDataSource.getRepository(Prompt);
@@ -22,4 +22,22 @@ export async function index(req, res, next) {
   } catch (err) {
     res.status(400).json({ error: err.message });
   }
+}
+
+export async function getOne(req, res, next){
+  
+  try {
+    const { id } = req.params
+    console.log(id)
+    const prompt = await promptRepository.findOneOrFail({
+      where: {
+        id: id
+      }
+    });
+    res.status(200).json(prompt)
+    console.log(prompt)
+  } catch (error) {
+    console.log('No prompt found')
+  }
+
 }
