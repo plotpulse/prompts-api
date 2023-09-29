@@ -5,7 +5,7 @@ import express from "express";
 const { Request, Response, NextFunction } = express;
 const createError = require("http-errors");
 const cors = require("cors");
-const promptsRouter = require("./routes/promptsRouter.js");
+import promptsRouter from "./routes/promptsRouter";
 
 /////////////
 const app = express();
