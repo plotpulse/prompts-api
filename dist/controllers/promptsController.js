@@ -3,11 +3,10 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.getOne = exports.index = exports.create = void 0;
+exports.promptsController = void 0;
 const data_source_1 = __importDefault(require("../data-source"));
 const entity_1 = require("../entity");
 const promptRepository = data_source_1.default.getRepository(entity_1.Prompt);
-const replyRepository = data_source_1.default.getRepository(entity_1.Reply);
 async function create(req, res, next) {
     try {
         const promptData = req.body;
@@ -19,7 +18,6 @@ async function create(req, res, next) {
         res.status(400).json({ error: err.message });
     }
 }
-exports.create = create;
 async function index(req, res, next) {
     try {
         const prompts = await promptRepository.find();
@@ -29,22 +27,52 @@ async function index(req, res, next) {
         res.status(400).json({ error: err.message });
     }
 }
-exports.index = index;
-async function getOne(req, res, next) {
+async function details(req, res, next) {
     try {
         const { id } = req.params;
-        console.log(id);
         const prompt = await promptRepository.findOneOrFail({
             where: {
-                id: id
-            }
+                id: id,
+            },
         });
         res.status(200).json(prompt);
         console.log(prompt);
     }
     catch (error) {
-        console.log('No prompt found');
+        res.status(404).json({ error: "No prompt found" });
     }
 }
-exports.getOne = getOne;
+async function update(req, res, next) {
+    try {
+        const id = req.params.id;
+        console.log(id);
+        const updatedPrompt = req.body;
+        await promptRepository.update(id, updatedPrompt);
+        res.status(200).json({ message: "Successfully updated" });
+    }
+    catch (error) {
+        res.status(400).json({ error: error.message });
+    }
+}
+async function destroy(req, res, next) {
+    try {
+        const result = await promptRepository.delete(req.params.id);
+        if (result.affected > 0) {
+            res.status(200).json({ message: "Successfully deleted" });
+        }
+        else {
+            res.status(404).json({ error: "No prompt found to delete" });
+        }
+    }
+    catch (error) {
+        res.status(400).json({ error: error.message });
+    }
+}
+exports.promptsController = {
+    create,
+    index,
+    getOne: details,
+    update,
+    delete: destroy,
+};
 //# sourceMappingURL=promptsController.js.map

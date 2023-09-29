@@ -23,6 +23,7 @@ app.use("/prompts", promptsRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
+  console.log("hitting extra error");
   next(createError(404));
 });
 
