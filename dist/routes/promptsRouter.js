@@ -34,7 +34,7 @@ router.get("/", promptsController.index);
 // CREATE
 router.post("/", promptsController.create);
 // SHOW/DETAILS
-// router.get("/:id", promptsController.getOne);
+router.get("/:id", promptsController.getOne);
 // // DELETE
 // router.delete("/:id", promptsController.delete);
 module.exports = router;
