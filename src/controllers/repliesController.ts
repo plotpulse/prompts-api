@@ -7,7 +7,12 @@ const promptRepository = AppDataSource.getRepository(Prompt);
 async function create(req, res, next) {
   try {
     const promptId = req.params.id;
-    const prompt = await promptRepository.findOneOrFail(promptId);
+    if (!promptId) {
+      return res.status(400).json({ error: "no prompt id" });
+    }
+    const prompt = await promptRepository.findOneOrFail({
+      where: { id: promptId },
+    });
     const replyData = req.body;
     const newReply = replyRepository.create({
       ...replyData,
@@ -22,7 +27,7 @@ async function create(req, res, next) {
 
 async function index(req, res, next) {
   try {
-    const replies = await replyRepository.find();
+    const replies = await replyRepository.find({ relations: ["prompt"] });
     res.status(200).json(replies);
   } catch (err) {
     res.status(400).json({ error: err.message });

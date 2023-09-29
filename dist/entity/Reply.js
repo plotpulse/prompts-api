@@ -27,6 +27,10 @@ __decorate([
     (0, typeorm_1.ManyToOne)(() => Prompt_1.Prompt, (prompt) => prompt.replies),
     __metadata("design:type", Object)
 ], Reply.prototype, "prompt", void 0);
+__decorate([
+    (0, typeorm_1.Column)(),
+    __metadata("design:type", Number)
+], Reply.prototype, "promptId", void 0);
 exports.Reply = Reply = __decorate([
     (0, typeorm_1.Entity)()
 ], Reply);
