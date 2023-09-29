@@ -3,3 +3,4 @@ development.env
 .env
 production.env
 test.env
+dist
