@@ -8,7 +8,8 @@
     "build": "tsc",
     "watch": "tsc -w",
     "start": "nodemon",
-    "dev": "npm-run-all --parallel start watch"
+    "dev": "npm-run-all --parallel start watch",
+    "typeorm": "ts-node ./node_modules/typeorm/cli.js"
   },
   "nodemonConfig": {
     "watch": [
