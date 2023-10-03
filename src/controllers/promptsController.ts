@@ -53,8 +53,13 @@ async function update(req, res, next) {
 
 async function destroy(req, res, next) {
   try {
-    const result = await promptRepository.delete(req.params.id);
-    if (result.affected > 0) {
+    const prompt = await promptRepository.findOne({
+      where: { id: req.params.id },
+      relations: ["replies"],
+    });
+
+    if (prompt) {
+      await promptRepository.remove(prompt);
       res.status(200).json({ message: "Successfully deleted" });
     } else {
       res.status(404).json({ error: "No prompt found to delete" });
