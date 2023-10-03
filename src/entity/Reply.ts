@@ -22,7 +22,7 @@ export class Reply implements IReply {
   response: string;
 
   @ManyToOne(() => Prompt, (prompt) => prompt.replies)
-  prompt: Relation<Prompt>;
+  prompt: Prompt;
 
   @Column()
   promptId: number;
