@@ -4,6 +4,7 @@ import {
   Column,
   ManyToOne,
   Relation,
+  JoinColumn,
 } from "typeorm";
 
 import { Prompt } from "./Prompt";
@@ -22,8 +23,6 @@ export class Reply implements IReply {
   response: string;
 
   @ManyToOne(() => Prompt, (prompt) => prompt.replies)
+  @JoinColumn()
   prompt: Prompt;
-
-  @Column()
-  promptId: number;
 }

@@ -22,8 +22,8 @@ export class Prompt implements IPrompt {
   content: string;
 
   @OneToMany(() => Reply, (reply) => reply.prompt, {
-    cascade: ["remove"],
-    onDelete: "CASCADE",
+    cascade: true,
+    onDelete: "SET NULL",
   })
   replies: Reply[];
 }
