@@ -7,18 +7,16 @@ const createError = require("http-errors");
 const cors = require("cors");
 import promptsRouter from "./routes/promptsRouter";
 
-/////////////
 const app = express();
 
-/////////////////
-
+// Middleware //
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cors());
 app.use(logger("dev"));
 app.use(cookieParser());
 
-// routers
+// Routers //
 app.use("/prompts", promptsRouter);
 
 // catch 404 and forward to error handler
