@@ -24,8 +24,11 @@ __decorate([
     __metadata("design:type", String)
 ], Prompt.prototype, "content", void 0);
 __decorate([
-    (0, typeorm_1.OneToMany)(() => Reply_1.Reply, (reply) => reply.prompt),
-    __metadata("design:type", Object)
+    (0, typeorm_1.OneToMany)(() => Reply_1.Reply, (reply) => reply.prompt, {
+        cascade: true,
+        onDelete: "CASCADE",
+    }),
+    __metadata("design:type", Array)
 ], Prompt.prototype, "replies", void 0);
 exports.Prompt = Prompt = __decorate([
     (0, typeorm_1.Entity)()

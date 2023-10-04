@@ -1,23 +1,27 @@
-import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, Relation } from "typeorm";
+import {
+  Entity,
+  PrimaryGeneratedColumn,
+  Column,
+  ManyToOne,
+  Relation,
+  JoinColumn,
+} from "typeorm";
 
 import { Prompt } from "./Prompt";
 
 export interface IReply {
-    id: number,
-    response: string,
-
+  id: number;
+  response: string;
 }
 
 @Entity()
 export class Reply implements IReply {
+  @PrimaryGeneratedColumn()
+  id: number;
 
-    @PrimaryGeneratedColumn()
-    id: number
+  @Column("text")
+  response: string;
 
-    @Column("text")
-    response: string
-
-    @ManyToOne(() => Prompt, (prompt) => prompt.replies)
-    prompt: Relation<Prompt>;
-
+  @ManyToOne(() => Prompt, (prompt) => prompt.replies)
+  prompt: Prompt;
 }

@@ -1,6 +1,7 @@
 import express from "express";
 const router = express.Router();
 import { promptsController } from "../controllers/promptsController";
+import repliesRouter from "./repliesRouter";
 
 // INDEX
 router.get("/", promptsController.index);
@@ -13,4 +14,7 @@ router.put("/:id", promptsController.update);
 // DELETE
 router.delete("/:id", promptsController.delete);
 
-module.exports = router;
+// Nested replies routes:
+router.use("/:id/replies", repliesRouter);
+
+export default router;

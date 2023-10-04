@@ -6,6 +6,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
 const router = express_1.default.Router();
 const promptsController_1 = require("../controllers/promptsController");
+const repliesRouter_1 = __importDefault(require("./repliesRouter"));
 // INDEX
 router.get("/", promptsController_1.promptsController.index);
 // CREATE
@@ -16,5 +17,7 @@ router.get("/:id", promptsController_1.promptsController.getOne);
 router.put("/:id", promptsController_1.promptsController.update);
 // DELETE
 router.delete("/:id", promptsController_1.promptsController.delete);
-module.exports = router;
+// Nested replies routes:
+router.use("/:id/replies", repliesRouter_1.default);
+exports.default = router;
 //# sourceMappingURL=promptsRouter.js.map
