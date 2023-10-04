@@ -25,7 +25,6 @@ __decorate([
 ], Reply.prototype, "response", void 0);
 __decorate([
     (0, typeorm_1.ManyToOne)(() => Prompt_1.Prompt, (prompt) => prompt.replies),
-    (0, typeorm_1.JoinColumn)(),
     __metadata("design:type", Prompt_1.Prompt)
 ], Reply.prototype, "prompt", void 0);
 exports.Reply = Reply = __decorate([

@@ -1,7 +1,8 @@
 import AppDataSource from "../data-source";
-import { Prompt } from "../entity";
+import { Prompt, Reply } from "../entity";
 
 const promptRepository = AppDataSource.getRepository(Prompt);
+const replyRepository = AppDataSource.getRepository(Reply)
 
 async function create(req, res, next) {
   try {
@@ -53,13 +54,19 @@ async function update(req, res, next) {
 
 async function destroy(req, res, next) {
   try {
+    console.log('hitting destroy')
     const prompt = await promptRepository.findOne({
       where: { id: req.params.id },
-      relations: ["replies"],
+      relations: ["replies"]
     });
+    
 
     if (prompt) {
+      await Promise.all(prompt.replies?.map(async (reply: Reply) => {
+        await replyRepository.remove(reply);
+      }));
       await promptRepository.remove(prompt);
+      
       res.status(200).json({ message: "Successfully deleted" });
     } else {
       res.status(404).json({ error: "No prompt found to delete" });

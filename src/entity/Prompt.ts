@@ -23,7 +23,7 @@ export class Prompt implements IPrompt {
 
   @OneToMany(() => Reply, (reply) => reply.prompt, {
     cascade: true,
-    onDelete: "SET NULL",
+    onDelete: "CASCADE",
   })
   replies: Reply[];
 }

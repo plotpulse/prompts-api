@@ -23,6 +23,5 @@ export class Reply implements IReply {
   response: string;
 
   @ManyToOne(() => Prompt, (prompt) => prompt.replies)
-  @JoinColumn()
   prompt: Prompt;
 }

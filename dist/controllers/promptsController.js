@@ -7,6 +7,7 @@ exports.promptsController = void 0;
 const data_source_1 = __importDefault(require("../data-source"));
 const entity_1 = require("../entity");
 const promptRepository = data_source_1.default.getRepository(entity_1.Prompt);
+const replyRepository = data_source_1.default.getRepository(entity_1.Reply);
 async function create(req, res, next) {
     try {
         const promptData = req.body;
@@ -57,11 +58,15 @@ async function update(req, res, next) {
 }
 async function destroy(req, res, next) {
     try {
+        console.log('hitting destroy');
         const prompt = await promptRepository.findOne({
             where: { id: req.params.id },
-            relations: ["replies"],
+            relations: ["replies"]
         });
         if (prompt) {
+            await Promise.all(prompt.replies?.map(async (reply) => {
+                await replyRepository.remove(reply);
+            }));
             await promptRepository.remove(prompt);
             res.status(200).json({ message: "Successfully deleted" });
         }
