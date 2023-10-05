@@ -1,13 +1,21 @@
 import cookieParser from "cookie-parser";
 import logger from "morgan";
-import express from "express";
-
-const { Request, Response, NextFunction } = express;
-const createError = require("http-errors");
-const cors = require("cors");
+import express, { Request, Response, NextFunction } from "express";
+import createError from "http-errors";
+import cors from "cors";
 import promptsRouter from "./routes/promptsRouter";
+import { auth } from "express-oauth2-jwt-bearer";
 
 const app = express();
+const port = process.env.PORT || 8080;
+const audience = process.env.AUDIENCE;
+const issuerBaseURL = process.env.ISSUER_BASE_URL;
+
+const jwtCheck = auth({
+  audience: audience,
+  issuerBaseURL: issuerBaseURL,
+  tokenSigningAlg: "RS256",
+});
 
 // Middleware //
 app.use(express.json());

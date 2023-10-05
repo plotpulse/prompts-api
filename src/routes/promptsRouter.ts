@@ -13,7 +13,6 @@ router.get("/:id", promptsController.getOne);
 router.put("/:id", promptsController.update);
 // DELETE
 router.delete("/:id", promptsController.delete);
-
 // Nested replies routes:
 router.use("/:id/replies", repliesRouter);
 
