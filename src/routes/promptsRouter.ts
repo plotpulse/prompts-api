@@ -1,10 +1,12 @@
-import express from "express";
-const router = express.Router();
 import { promptsController } from "../controllers/promptsController";
 import repliesRouter from "./repliesRouter";
+import express from "express";
+import { jwtCheck } from "../modules/auth";
+
+const router = express.Router();
 
 // INDEX
-router.get("/", promptsController.index);
+router.get("/", jwtCheck, promptsController.index);
 // CREATE
 router.post("/", promptsController.create);
 // SHOW/DETAILS
