@@ -6,12 +6,10 @@ import {
   Relation,
 } from "typeorm";
 
+import { IPrompt } from "../shared-types";
 import { Reply } from "./Reply";
 
-export interface IPrompt {
-  id: number;
-  content: string;
-}
+
 
 @Entity()
 export class Prompt implements IPrompt {

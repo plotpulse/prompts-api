@@ -3,16 +3,11 @@ import {
   PrimaryGeneratedColumn,
   Column,
   ManyToOne,
-  Relation,
-  JoinColumn,
 } from "typeorm";
 
+import { IReply } from "../shared-types";
 import { Prompt } from "./Prompt";
 
-export interface IReply {
-  id: number;
-  response: string;
-}
 
 @Entity()
 export class Reply implements IReply {
