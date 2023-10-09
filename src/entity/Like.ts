@@ -8,7 +8,7 @@ import {
 
 import { ILike } from '../shared-types'
 import { Prompt } from "./Prompt";
-import { UserProfile } from "./UserProfile"
+import { Profile } from "./Profile"
 
 
 @Entity()
@@ -17,9 +17,9 @@ export class Like implements ILike {
     @PrimaryGeneratedColumn()
     id: number;
 
-    @OneToOne(() => UserProfile)
+    @OneToOne(() => Profile)
     @JoinColumn()
-    user: UserProfile; 
+    user: Profile; 
 
     @OneToOne(() => Prompt)
     @JoinColumn()

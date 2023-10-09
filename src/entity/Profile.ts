@@ -4,17 +4,15 @@ import {
     Column,
     OneToOne,
     JoinColumn,
+    PrimaryColumn,
 } from "typeorm";
 
-import { IUserProfile } from "../shared-types/";
+import { IProfile } from "../shared-types";
 
 @Entity()
-export class UserProfile implements IUserProfile {
-    @PrimaryGeneratedColumn()
-    id: number;
-
-    @Column()
-    auth0: number;
+export class Profile implements IProfile {
+    @PrimaryColumn()
+    id: string;
 
     @Column()
     genres: string[];

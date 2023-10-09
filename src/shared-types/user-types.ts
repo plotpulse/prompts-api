@@ -1,8 +1,7 @@
-export interface IUserProfile {
+export interface IProfile {
 
-    id: number;
-    auth0: number;
-    genres: string[];
-    bio: string;
+    id: string;
+    genres?: string[];
+    bio?: string;
 
 }

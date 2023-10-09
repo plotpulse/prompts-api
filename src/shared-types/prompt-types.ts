@@ -1,4 +1,4 @@
-import { IUserProfile } from "./user-types";
+import { IProfile } from "./user-types";
 
 export interface IPrompt {
     id: number;
@@ -14,6 +14,6 @@ export interface IReply {
 
 export interface ILike {
     id: number;
-    user: IUserProfile; 
+    user: IProfile; 
     prompt: IPrompt;
 }
