@@ -4,12 +4,15 @@ import { Profile } from "../entity";
 const profileRepository = AppDataSource.getRepository(Profile)
 
 async function create(req, res, next){
+    console.log('hitting create')
+    console.log(req.body)
     try {
         const profileData = req.body;
         const newProfile = profileRepository.create(profileData);
         await profileRepository.save(newProfile);
         res.status(201).json(newProfile);
       } catch (err) {
+        console.log(err)
         res.status(400).json({ error: err.message });
       }
 }

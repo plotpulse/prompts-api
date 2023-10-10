@@ -7,3 +7,5 @@ import { profilesController } from "../controllers/profilesController";
 router.post("/", profilesController.create);
 // SHOW/DETAILS
 router.get("/:email", profilesController.getOne);
+
+export default router;

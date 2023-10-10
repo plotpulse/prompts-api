@@ -10,6 +10,7 @@ const { Request, Response, NextFunction } = express_1.default;
 const createError = require("http-errors");
 const cors = require("cors");
 const promptsRouter_1 = __importDefault(require("./routes/promptsRouter"));
+const profilesRouter_1 = __importDefault(require("./routes/profilesRouter"));
 /////////////
 const app = (0, express_1.default)();
 /////////////////
@@ -20,6 +21,7 @@ app.use((0, morgan_1.default)("dev"));
 app.use((0, cookie_parser_1.default)());
 // routers
 app.use("/prompts", promptsRouter_1.default);
+app.use("/profiles", profilesRouter_1.default);
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
     console.log("hitting extra error");

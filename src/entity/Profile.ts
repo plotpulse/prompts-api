@@ -15,9 +15,9 @@ export class Profile implements IProfile {
     id: string;
 
     @Column()
-    genres: string[];
+    genres?: string;
 
     @Column("text")
-    bio: string;
+    bio?: string;
 
 }
