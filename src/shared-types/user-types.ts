@@ -1,7 +1,7 @@
 export interface IProfile {
 
     id: string;
-    genres?: string;
+    genres?: string[];
     bio?: string;
 
 }

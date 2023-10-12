@@ -3,11 +3,15 @@ import {
   PrimaryGeneratedColumn,
   Column,
   OneToMany,
+  ManyToOne,
   Relation,
+  OneToOne,
 } from "typeorm";
 
 import { IPrompt } from "../shared-types";
 import { Reply } from "./Reply";
+import { Profile } from "./Profile";
+import { Like } from "./Like"
 
 
 
@@ -24,4 +28,10 @@ export class Prompt implements IPrompt {
     onDelete: "CASCADE",
   })
   replies: Reply[];
+
+  @OneToMany(() => Like, (like) => like.prompt)
+  likes: Like[];
+
+  @ManyToOne(() => Profile)
+  user: Profile
 }

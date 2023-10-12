@@ -4,6 +4,7 @@ import {
     Column,
     OneToOne,
     JoinColumn,
+    ManyToOne,
 } from "typeorm";
 
 import { ILike } from '../shared-types'
@@ -17,11 +18,13 @@ export class Like implements ILike {
     @PrimaryGeneratedColumn()
     id: number;
 
-    @OneToOne(() => Profile)
+    @ManyToOne(() => Profile)
     @JoinColumn()
     user: Profile; 
 
-    @OneToOne(() => Prompt)
+    @ManyToOne(() => Prompt, {
+        cascade: true
+    })
     @JoinColumn()
     prompt: Prompt
 
