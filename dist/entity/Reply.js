@@ -12,6 +12,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.Reply = void 0;
 const typeorm_1 = require("typeorm");
 const Prompt_1 = require("./Prompt");
+const Profile_1 = require("./Profile");
 let Reply = class Reply {
 };
 exports.Reply = Reply;
@@ -27,6 +28,10 @@ __decorate([
     (0, typeorm_1.ManyToOne)(() => Prompt_1.Prompt, (prompt) => prompt.replies),
     __metadata("design:type", Prompt_1.Prompt)
 ], Reply.prototype, "prompt", void 0);
+__decorate([
+    (0, typeorm_1.ManyToOne)(() => Profile_1.Profile),
+    __metadata("design:type", Profile_1.Profile)
+], Reply.prototype, "user", void 0);
 exports.Reply = Reply = __decorate([
     (0, typeorm_1.Entity)()
 ], Reply);
