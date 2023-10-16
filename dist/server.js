@@ -8,7 +8,8 @@ const profilesRouter_1 = __importDefault(require("./routes/profilesRouter"));
 const cookie_parser_1 = __importDefault(require("cookie-parser"));
 const morgan_1 = __importDefault(require("morgan"));
 const express_1 = __importDefault(require("express"));
-const { Request, Response, NextFunction } = express_1.default;
+// These were giving me an error and aren't used elsewhere, commenting them out for now.
+// const { Request, Response, NextFunction } = express;
 const createError = require("http-errors");
 const cors = require("cors");
 /////////////

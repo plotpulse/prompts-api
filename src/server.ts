@@ -6,7 +6,8 @@ import logger from "morgan";
 import express from "express";
 import { request } from "http";
 
-const { Request, Response, NextFunction } = express;
+// These were giving me an error and aren't used elsewhere, commenting them out for now.
+// const { Request, Response, NextFunction } = express;
 const createError = require("http-errors");
 const cors = require("cors");
 
