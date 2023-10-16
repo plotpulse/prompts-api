@@ -1,5 +1,6 @@
 import promptsRouter from "./routes/promptsRouter";
 import profilesRouter from "./routes/profilesRouter";
+import repliesRouter from "./routes/repliesRouter";
 import cookieParser from "cookie-parser";
 import logger from "morgan";
 import express from "express";
