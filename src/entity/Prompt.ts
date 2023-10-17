@@ -11,7 +11,7 @@ import {
 import { IPrompt } from "../shared-types";
 import { Reply } from "./Reply";
 import { Profile } from "./Profile";
-import { Like } from "./Like"
+import { Star } from "./Star"
 
 
 
@@ -29,8 +29,8 @@ export class Prompt implements IPrompt {
   })
   replies: Reply[];
 
-  @OneToMany(() => Like, (like) => like.prompt)
-  likes: Like[];
+  @OneToMany(() => Star, (star) => star.prompt)
+  stars: Star[];
 
   @ManyToOne(() => Profile)
   user: Profile
