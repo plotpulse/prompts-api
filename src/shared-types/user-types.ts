@@ -1,9 +1,10 @@
 export interface IProfile {
 
     id: string;
-    roles?: string[];
-    genres?: string[];
     bio?: string;
+    displayName: string;
     details?: string;
+    genres?: string[];
+    roles?: string[];
 
 }

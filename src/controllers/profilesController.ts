@@ -9,8 +9,7 @@ async function create(req, res, next) {
   try {
     const profileData = req.body;
     const newProfile = profileRepository.create(profileData);
-    await profileRepository.save(newProfile);
-    res.status(201).json(newProfile);
+    res.status(201).json(await profileRepository.save(newProfile));
   } catch (err) {
     console.log(err);
     res.status(400).json({ error: err.message });
@@ -19,8 +18,8 @@ async function create(req, res, next) {
 
 async function index(req, res, next) {
   try {
-    const prompts = await profileRepository.find();
-    res.status(200).json(prompts);
+    const profiles = await profileRepository.find();
+    res.status(200).json(profiles);
   } catch (err) {
     res.status(400).json({ error: err.message });
   }
@@ -43,10 +42,9 @@ async function details(req, res, next) {
 
 async function update(req, res, next) {
   try {
-    const id = req.params.id;
-    const updatedPrompt = req.body;
-    await profileRepository.update(id, updatedPrompt);
-    res.status(200).json({ message: "Successfully updated" });
+    const { email } = req.params;
+    const updatedProfile = req.body;
+    res.status(200).json(await profileRepository.update(email, updatedProfile));
   } catch (error) {
     res.status(400).json({ error: error.message });
   }
@@ -54,13 +52,13 @@ async function update(req, res, next) {
 
 async function destroy(req, res, next) {
   try {
-    const prompt = await profileRepository.findOne({
+    const profile = await profileRepository.findOne({
       where: { id: req.params.id },
       relations: ["replies"],
     });
 
-    if (prompt) {
-      await profileRepository.remove(prompt);
+    if (profile) {
+      await profileRepository.remove(profile);
 
       res.status(200).json({ message: "Successfully deleted" });
     } else {
