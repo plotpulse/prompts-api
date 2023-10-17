@@ -5,17 +5,17 @@ export interface IPrompt {
     content: string;
     replies?: IReply[];
     user: IProfile;
-    likes?: ILike[];
+    stars?: IStar[];
 }
 
 export interface IReply {
     id: number;
     response: string;
     prompt: IPrompt;
-    user: IProfile
+    user: IProfile;
 }
 
-export interface ILike {
+export interface IStar {
     id: number;
     user: IProfile; 
     prompt: IPrompt;

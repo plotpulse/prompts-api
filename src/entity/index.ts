@@ -1,4 +1,4 @@
 export { Prompt } from "./Prompt";
 export { Reply } from "./Reply";
-export { Like } from "./Like";
+export { Star } from "./Star";
 export { Profile } from "./Profile"

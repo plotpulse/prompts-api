@@ -7,13 +7,13 @@ import {
     ManyToOne,
 } from "typeorm";
 
-import { ILike } from '../shared-types'
+import { IStar } from '../shared-types'
 import { Prompt } from "./Prompt";
 import { Profile } from "./Profile"
 
 
 @Entity()
-export class Like implements ILike {
+export class Star implements IStar {
 
     @PrimaryGeneratedColumn()
     id: number;
