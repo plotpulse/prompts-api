@@ -3,16 +3,13 @@ import {
   PrimaryGeneratedColumn,
   Column,
   ManyToOne,
-  Relation,
-  JoinColumn,
+  OneToOne,
 } from "typeorm";
 
+import { IReply } from "../shared-types";
 import { Prompt } from "./Prompt";
+import { Profile } from "./Profile";
 
-export interface IReply {
-  id: number;
-  response: string;
-}
 
 @Entity()
 export class Reply implements IReply {
@@ -24,4 +21,7 @@ export class Reply implements IReply {
 
   @ManyToOne(() => Prompt, (prompt) => prompt.replies)
   prompt: Prompt;
+
+  @ManyToOne(() => Profile)
+  user: Profile
 }

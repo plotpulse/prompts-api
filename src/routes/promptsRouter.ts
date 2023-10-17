@@ -1,7 +1,7 @@
-import express from "express";
-const router = express.Router();
 import { promptsController } from "../controllers/promptsController";
 import repliesRouter from "./repliesRouter";
+import express from "express";
+const router = express.Router();
 
 // INDEX
 router.get("/", promptsController.index);

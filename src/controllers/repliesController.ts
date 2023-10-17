@@ -27,7 +27,13 @@ async function create(req, res, next) {
 
 async function index(req, res, next) {
   try {
-    const replies = await replyRepository.find({ relations: ["prompt"] });
+    const replies = await replyRepository.find({ 
+      where: {
+        prompt: req.params.id,
+      },
+      relations: ["prompt"] 
+    
+    });
     res.status(200).json(replies);
   } catch (err) {
     res.status(400).json({ error: err.message });
@@ -51,10 +57,9 @@ async function details(req, res, next) {
 
 async function update(req, res, next) {
   try {
-    const id = req.params.promptId;
+    const id = req.params.replyId;
     const updatedReply = req.body;
-    await replyRepository.update(id, updatedReply);
-    res.status(200).json({ message: "Successfully updated" });
+    res.status(200).json(await replyRepository.update(id, updatedReply));
   } catch (error) {
     res.status(400).json({ error: error.message });
   }

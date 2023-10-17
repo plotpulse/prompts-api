@@ -12,6 +12,8 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.Prompt = void 0;
 const typeorm_1 = require("typeorm");
 const Reply_1 = require("./Reply");
+const Profile_1 = require("./Profile");
+const Like_1 = require("./Like");
 let Prompt = class Prompt {
 };
 exports.Prompt = Prompt;
@@ -30,6 +32,14 @@ __decorate([
     }),
     __metadata("design:type", Array)
 ], Prompt.prototype, "replies", void 0);
+__decorate([
+    (0, typeorm_1.OneToMany)(() => Like_1.Like, (like) => like.prompt),
+    __metadata("design:type", Array)
+], Prompt.prototype, "likes", void 0);
+__decorate([
+    (0, typeorm_1.ManyToOne)(() => Profile_1.Profile),
+    __metadata("design:type", Profile_1.Profile)
+], Prompt.prototype, "user", void 0);
 exports.Prompt = Prompt = __decorate([
     (0, typeorm_1.Entity)()
 ], Prompt);

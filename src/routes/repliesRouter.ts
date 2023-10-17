@@ -1,6 +1,6 @@
+import { repliesController } from "../controllers/repliesController";
 import express from "express";
 const router = express.Router({ mergeParams: true });
-import { repliesController } from "../controllers/repliesController";
 
 // INDEX
 router.get("/", repliesController.index);
