@@ -37,4 +37,5 @@ export class Prompt implements IPrompt {
 
   @Column("simple-array")
   genres: string[];
+  
 }
