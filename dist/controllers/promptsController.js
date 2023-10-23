@@ -49,8 +49,7 @@ async function update(req, res, next) {
         const id = req.params.id;
         console.log(id);
         const updatedPrompt = req.body;
-        await promptRepository.update(id, updatedPrompt);
-        res.status(200).json({ message: "Successfully updated" });
+        res.status(200).json(await promptRepository.update(id, updatedPrompt));
     }
     catch (error) {
         res.status(400).json({ error: error.message });
