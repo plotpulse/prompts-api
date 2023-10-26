@@ -7,7 +7,12 @@ async function create(req, res, next) {
   console.log("hitting create");
   console.log(req.body);
   try {
+    //ideally, we should validate that the object matches our expected type before saving it to the database
+    
     const profileData = req.body;
+
+    // this just checks that email contains something for right now
+    if (profileData.id === '') throw new Error('No email provided')
     const newProfile = profileRepository.create(profileData);
     res.status(201).json(await profileRepository.save(newProfile));
   } catch (err) {

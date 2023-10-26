@@ -33,5 +33,9 @@ export class Prompt implements IPrompt {
   stars: Star[];
 
   @ManyToOne(() => Profile)
-  user: Profile
+  user: Profile;
+
+  @Column("simple-array")
+  genres: string[];
+  
 }

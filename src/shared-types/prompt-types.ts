@@ -6,6 +6,7 @@ export interface IPrompt {
     replies?: IReply[];
     user: IProfile;
     stars?: IStar[];
+    genres: string[];
 }
 
 export interface IReply {
