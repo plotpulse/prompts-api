@@ -1,15 +1,28 @@
 import AppDataSource from "../data-source";
-import { Prompt, Reply } from "../entity";
+import { Prompt, Reply, Profile } from "../entity";
 
 const promptRepository = AppDataSource.getRepository(Prompt);
 const replyRepository = AppDataSource.getRepository(Reply)
+const profileRepository = AppDataSource.getRepository(Profile)
 
 async function create(req, res, next) {
   try {
     const promptData = req.body;
+    console.log('before', promptData)
+    const profile = await profileRepository.findOneOrFail({
+      where: {
+        id: promptData.user
+      }
+    })
+    if (!profile){
+      throw new Error('No user profile found.')
+    }
+    promptData.user = profile
+   
     const newPrompt = promptRepository.create(promptData);
-    await promptRepository.save(newPrompt);
-    res.status(201).json(newPrompt);
+    console.log('after', newPrompt)
+    
+    res.status(201).json(await promptRepository.save(newPrompt));
   } catch (err) {
     res.status(400).json({ error: err.message });
   }

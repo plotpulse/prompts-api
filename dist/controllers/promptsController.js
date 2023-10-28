@@ -8,12 +8,23 @@ const data_source_1 = __importDefault(require("../data-source"));
 const entity_1 = require("../entity");
 const promptRepository = data_source_1.default.getRepository(entity_1.Prompt);
 const replyRepository = data_source_1.default.getRepository(entity_1.Reply);
+const profileRepository = data_source_1.default.getRepository(entity_1.Profile);
 async function create(req, res, next) {
     try {
         const promptData = req.body;
+        console.log('before', promptData);
+        const profile = await profileRepository.findOneOrFail({
+            where: {
+                id: promptData.user
+            }
+        });
+        if (!profile) {
+            throw new Error('No user profile found.');
+        }
+        promptData.user = profile;
         const newPrompt = promptRepository.create(promptData);
-        await promptRepository.save(newPrompt);
-        res.status(201).json(newPrompt);
+        console.log('after', newPrompt);
+        res.status(201).json(await promptRepository.save(newPrompt));
     }
     catch (err) {
         res.status(400).json({ error: err.message });
