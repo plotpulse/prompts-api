@@ -8,10 +8,12 @@ import { starsController } from "../controllers/starsController";
 // CREATE
 router.post("/", starsController.create);
 // SHOW/DETAILS
-router.get("/:id", starsController.getOne);
+router.get("/:starId", starsController.getOne);
+// INDEX
+router.get("/", starsController.index)
 
 // DELETE
-router.delete("/:id", starsController.delete);
+router.delete("/:starId", starsController.delete);
 
 
 export default router;

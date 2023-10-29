@@ -40,7 +40,6 @@ async function create(req, res, next) {
 async function index(req, res, next) {
   
   try {
-    console.log(req.params.id)
 
     const replies = await replyRepository.find({
       where: {
