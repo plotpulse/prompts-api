@@ -9,7 +9,7 @@ async function create(req, res, next) {
   try {
     const promptId = req.params.id;
     if (!promptId) {
-      return res.status(400).json({ error: "no prompt id" });
+      return res.status(400).json({ error: "no prompt found" });
     }
     const prompt = await promptRepository.findOneOrFail({
       where: { id: promptId },
@@ -21,7 +21,7 @@ async function create(req, res, next) {
       }
     })
     if (!profile){
-      throw new Error('No user profile found.')
+      return res.status(400).json({ error: "no profile found" })
     }
 
 
@@ -38,13 +38,15 @@ async function create(req, res, next) {
 }
 
 async function index(req, res, next) {
+  
   try {
-    const replies = await replyRepository.find({ 
+    console.log(req.params.id)
+
+    const replies = await replyRepository.find({
       where: {
-        prompt: req.params.id,
+        prompt: { id: req.params.id },
       },
-      relations: ["prompt"] 
-    
+      relations: ['user'],
     });
     res.status(200).json(replies);
   } catch (err) {
