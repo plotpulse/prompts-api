@@ -1,5 +1,6 @@
 import { promptsController } from "../controllers/promptsController";
 import repliesRouter from "./repliesRouter";
+import starsRouter from "./starsRouter";
 import express from "express";
 const router = express.Router();
 
@@ -16,5 +17,6 @@ router.delete("/:id", promptsController.delete);
 
 // Nested replies routes:
 router.use("/:id/replies", repliesRouter);
+router.use("/:id/stars", starsRouter);
 
 export default router;

@@ -35,7 +35,7 @@ async function create(req, res, next) {
 
 async function destroy(req, res, next) {
     try {
-        const result = await starRepository.delete(req.params.id)
+        const result = await starRepository.delete(req.params.starId)
 
         if (result.affected > 0){
             res.status(200).json(result)
@@ -52,11 +52,11 @@ async function destroy(req, res, next) {
 
 async function details(req, res, next) {
     try {
-        const { id } = req.params.id
+        const { starId } = req.params
 
         const star = await starRepository.findOneOrFail({
             where: {
-                id: id,
+                id: starId,
             }
         })
         res.status(200).json(star)
@@ -67,8 +67,27 @@ async function details(req, res, next) {
     }
 }
 
+async function index(req, res, next){
+
+    try {
+
+        const stars = await starRepository.find({
+          where: {
+            prompt: { id: req.params.id },
+          },
+          relations: ['user'],
+        });
+        
+        res.status(200).json(stars);
+      } catch (err) {
+        res.status(400).json({ error: err.message });
+      }
+
+}
+
 export const starsController = {
     create,
     getOne: details,
     delete: destroy,
+    index,
 }

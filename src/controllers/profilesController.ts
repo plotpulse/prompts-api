@@ -4,8 +4,6 @@ import { Profile } from "../entity";
 const profileRepository = AppDataSource.getRepository(Profile);
 
 async function create(req, res, next) {
-  console.log("hitting create");
-  console.log(req.body);
   try {
     //ideally, we should validate that the object matches our expected type before saving it to the database
     
@@ -39,7 +37,6 @@ async function details(req, res, next) {
       },
     });
     res.status(200).json(profile);
-    console.log(profile);
   } catch (error) {
     res.status(404).json({ error: "No profile found" });
   }
