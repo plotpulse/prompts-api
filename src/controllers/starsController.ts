@@ -70,13 +70,16 @@ async function details(req, res, next) {
 async function index(req, res, next){
 
     try {
+        const promptId = req.params.id
+        console.log(req.params)
 
         const stars = await starRepository.find({
           where: {
             prompt: { id: req.params.id },
           },
-          relations: ['user'],
+          relations: ['user', 'prompt'],
         });
+        console.log(stars)
         
         res.status(200).json(stars);
       } catch (err) {
