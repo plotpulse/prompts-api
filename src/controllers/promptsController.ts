@@ -8,7 +8,6 @@ const profileRepository = AppDataSource.getRepository(Profile)
 async function create(req, res, next) {
   try {
     const promptData = req.body;
-    console.log('before', promptData)
     const profile = await profileRepository.findOneOrFail({
       where: {
         id: promptData.user
@@ -20,7 +19,6 @@ async function create(req, res, next) {
     promptData.user = profile
    
     const newPrompt = promptRepository.create(promptData);
-    console.log('after', newPrompt)
     
     res.status(201).json(await promptRepository.save(newPrompt));
   } catch (err) {
@@ -30,7 +28,9 @@ async function create(req, res, next) {
 
 async function index(req, res, next) {
   try {
-    const prompts = await promptRepository.find();
+    const prompts = await promptRepository.find({
+      relations: ['user', 'stars']
+    });
     res.status(200).json(prompts);
   } catch (err) {
     res.status(400).json({ error: err.message });
@@ -66,7 +66,6 @@ async function update(req, res, next) {
 
 async function destroy(req, res, next) {
   try {
-    console.log('hitting destroy')
     const prompt = await promptRepository.findOne({
       where: { id: req.params.id },
       relations: ["replies"]

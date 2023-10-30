@@ -35,7 +35,7 @@ async function create(req, res, next) {
 
 async function destroy(req, res, next) {
     try {
-        const result = await starRepository.delete(req.params.id)
+        const result = await starRepository.delete(req.params.starId)
 
         if (result.affected > 0){
             res.status(200).json(result)
@@ -77,6 +77,7 @@ async function index(req, res, next){
           },
           relations: ['user'],
         });
+        
         res.status(200).json(stars);
       } catch (err) {
         res.status(400).json({ error: err.message });
