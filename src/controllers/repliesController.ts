@@ -62,7 +62,6 @@ async function details(req, res, next) {
       },
     });
     res.status(200).json(reply);
-    console.log(reply);
   } catch (error) {
     res.status(404).json({ error: "No reply found" });
   }
