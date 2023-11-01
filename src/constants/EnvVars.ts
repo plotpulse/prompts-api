@@ -3,5 +3,5 @@ export default {
   Port: process.env.PORT ?? 0,
   DbUrl: process.env.DB_URL ?? "",
   Audience: process.env.AUDIENCE ?? "",
-  IssuerBaseUrl: process.env.ISSUERBASEURL ?? "",
+  IssuerBaseUrl: process.env.ISSUER_BASE_URL ?? "",
 } as const;

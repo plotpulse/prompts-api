@@ -7,17 +7,20 @@ export interface IPrompt {
     user: IProfile;
     stars?: IStar[];
     genres: string[];
+    created?: string | Date;
 }
 
 export interface IReply {
     id: number;
     response: string;
-    prompt: IPrompt;
+    prompt?: IPrompt;
     user: IProfile;
+    created?: string | Date;
 }
 
 export interface IStar {
     id: number;
-    user: IProfile; 
-    prompt: IPrompt;
+    user?: IProfile; 
+    prompt?: IPrompt;
+    created?: string | Date;
 }
