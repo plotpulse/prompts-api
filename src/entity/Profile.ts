@@ -6,6 +6,7 @@ import {
     JoinColumn,
     PrimaryColumn,
     Unique,
+    CreateDateColumn,
 } from "typeorm";
 
 import { IProfile } from "../shared-types";
@@ -30,5 +31,8 @@ export class Profile implements IProfile {
 
     @Column("simple-array")
     roles?: string[];
+
+    @CreateDateColumn()
+    created: Date;
 
 }

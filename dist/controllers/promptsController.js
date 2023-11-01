@@ -49,7 +49,6 @@ async function details(req, res, next) {
             relations: ["replies", "user", "stars"],
         });
         res.status(200).json(prompt);
-        console.log(prompt);
     }
     catch (error) {
         res.status(404).json({ error: "No prompt found" });
@@ -58,7 +57,6 @@ async function details(req, res, next) {
 async function update(req, res, next) {
     try {
         const id = req.params.id;
-        console.log(id);
         const updatedPrompt = req.body;
         res.status(200).json(await promptRepository.update(id, updatedPrompt));
     }

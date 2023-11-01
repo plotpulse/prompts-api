@@ -5,6 +5,7 @@ import {
     OneToOne,
     JoinColumn,
     ManyToOne,
+    CreateDateColumn,
 } from "typeorm";
 
 import { IStar } from '../shared-types'
@@ -27,6 +28,9 @@ export class Star implements IStar {
     })
     @JoinColumn()
     prompt: Prompt
+
+    @CreateDateColumn()
+    created: Date;
 
 
 }
