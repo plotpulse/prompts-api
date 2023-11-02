@@ -44,6 +44,10 @@ __decorate([
     (0, typeorm_1.Column)("simple-array"),
     __metadata("design:type", Array)
 ], Prompt.prototype, "genres", void 0);
+__decorate([
+    (0, typeorm_1.CreateDateColumn)(),
+    __metadata("design:type", Date)
+], Prompt.prototype, "created", void 0);
 exports.Prompt = Prompt = __decorate([
     (0, typeorm_1.Entity)()
 ], Prompt);
