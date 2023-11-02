@@ -32,6 +32,10 @@ __decorate([
     (0, typeorm_1.ManyToOne)(() => Profile_1.Profile),
     __metadata("design:type", Profile_1.Profile)
 ], Reply.prototype, "user", void 0);
+__decorate([
+    (0, typeorm_1.CreateDateColumn)(),
+    __metadata("design:type", Date)
+], Reply.prototype, "created", void 0);
 exports.Reply = Reply = __decorate([
     (0, typeorm_1.Entity)()
 ], Reply);

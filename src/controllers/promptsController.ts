@@ -31,6 +31,7 @@ async function index(req, res, next) {
     const prompts = await promptRepository.find({
       relations: ['user', 'stars']
     });
+    
     res.status(200).json(prompts);
   } catch (err) {
     res.status(400).json({ error: err.message });
