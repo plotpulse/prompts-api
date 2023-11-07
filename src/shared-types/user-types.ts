@@ -6,5 +6,6 @@ export interface IProfile {
     details?: string;
     genres?: string[];
     roles?: string[];
+    created?: Date;
 
 }
