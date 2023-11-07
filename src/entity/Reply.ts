@@ -4,6 +4,7 @@ import {
   Column,
   ManyToOne,
   OneToOne,
+  CreateDateColumn,
 } from "typeorm";
 
 import { IReply } from "../shared-types";
@@ -24,4 +25,7 @@ export class Reply implements IReply {
 
   @ManyToOne(() => Profile)
   user: Profile
+
+  @CreateDateColumn()
+  created: Date;
 }

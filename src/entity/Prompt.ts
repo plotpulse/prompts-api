@@ -6,6 +6,7 @@ import {
   ManyToOne,
   Relation,
   OneToOne,
+  CreateDateColumn,
 } from "typeorm";
 
 import { IPrompt } from "../shared-types";
@@ -37,5 +38,8 @@ export class Prompt implements IPrompt {
 
   @Column("simple-array")
   genres: string[];
-  
+
+  @CreateDateColumn()
+  created: Date;
+
 }
