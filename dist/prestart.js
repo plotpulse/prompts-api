@@ -22,9 +22,10 @@ const args = (0, ts_command_line_args_1.parse)({
         optional: true
     },
 });
+console.log(path_1.default.join(__dirname, `../env/${args.env}.env`));
 // Set the env file
 const result2 = dotenv_1.default.config({
-    path: path_1.default.join(__dirname, `../src/env/${args.env}.env`),
+    path: path_1.default.join(__dirname, `../env/${args.env}.env`),
 });
 if (result2.error) {
     throw result2.error;
