@@ -7,8 +7,9 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "tsc",
     "watch": "tsc -w",
-    "start": "nodemon",
-    "dev": "npm-run-all --parallel start watch",
+    "start": "node -r module-alias/register ./dist",
+    "live": "nodemon",
+    "dev": "npm-run-all --parallel live watch",
     "typeorm": "ts-node ./node_modules/typeorm/cli.js"
   },
   "nodemonConfig": {
