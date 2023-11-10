@@ -5,34 +5,36 @@
  */
 
 // NOTE: DO NOT IMPORT ANY SOURCE CODE HERE
-// import path from 'path';
+import path from 'path';
 import dotenv from 'dotenv';
-// import { parse } from 'ts-command-line-args';
+import { parse } from 'ts-command-line-args';
 
 
 // **** Types **** //
 
-// interface IArgs {
-//   env: string;
-// }
+interface IArgs {
+  env: string;
+}
 
 
-// // **** Setup **** //
+// **** Setup **** //
 
-// // Command line arguments
-// const args = parse<IArgs>({
-//   env: {
-//     type: String,
-//     defaultValue: 'development',
-//     alias: 'e',
-//     optional: true
-//   },
-// });
+// Command line arguments
+const args = parse<IArgs>({
+  env: {
+    type: String,
+    defaultValue: 'development',
+    alias: 'e',
+    optional: true
+  },
+});
 
 
 
 // Set the env file
-const result2 = dotenv.config();
+const result2 = dotenv.config({
+  path: path.join(__dirname, `/.env`),
+});
 if (result2.error) {
   throw result2.error;
 }
